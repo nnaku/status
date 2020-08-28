@@ -1,0 +1,10 @@
+.root {
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    color: black;
+  }
+  &:visited {
+    color: gray;
+  }
+}
