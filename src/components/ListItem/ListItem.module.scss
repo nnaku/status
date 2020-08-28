@@ -1,0 +1,21 @@
+.root {
+  font-size: 1.5rem;
+  border-bottom: 1px solid gainsboro;
+  // transition: font-size 100ms ease-out;
+  scroll-margin-top: 8px;
+  display: flex;
+  & > * {
+    width: 100%;
+  }
+
+  &:target {
+    color: tomato;
+  }
+  &:last-of-type {
+    border-bottom: none;
+  }
+  &:hover {
+    font-size: 2rem;
+    background-color: WhiteSmoke;
+  }
+}
