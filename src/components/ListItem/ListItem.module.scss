@@ -1,21 +1,32 @@
 .root {
   font-size: 1.5rem;
+
   border-bottom: 1px solid gainsboro;
-  // transition: font-size 100ms ease-out;
-  scroll-margin-top: 8px;
+  transition: font-size 100ms ease-out;
+  scroll-margin-top: 2rem;
   display: flex;
+  color: #303030;
+  background-color: white;
+
   & > * {
     width: 100%;
   }
 
-  &:target {
+  &.subHeader {
+    color: white;
+    background-color: #303030;
+    position: sticky;
+    top: 0;
+    scroll-margin-top: 0;
+  }
+  &:target:not(.subHeader) {
     color: tomato;
   }
   &:last-of-type {
     border-bottom: none;
   }
-  &:hover {
+  &:hover:not(.subHeader) {
     font-size: 2rem;
-    background-color: WhiteSmoke;
+    background-color: whitesmoke;
   }
 }
