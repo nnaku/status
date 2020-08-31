@@ -1,0 +1,8 @@
+.root {
+  flex: 1;
+  position: sticky;
+  white-space: pre-line;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
