@@ -8,7 +8,7 @@ function AppHeader() {
   const { resetState } = useStoreActions();
 
   return (
-    <header className={styles.root}>
+    <header data-testid="AppHeader" className={styles.root}>
       <div className={styles.title}>
         <span>/var/lib/dpkg/</span>
         <span className={styles.status}>

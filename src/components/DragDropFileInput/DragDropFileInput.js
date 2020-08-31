@@ -27,7 +27,11 @@ export default function DragDropFileInput({ className }) {
   });
 
   return (
-    <Dropzone zoneProps={zoneProps} inputProps={inputProps}>
+    <Dropzone
+      data-testid="DragDropFileInput"
+      zoneProps={zoneProps}
+      inputProps={inputProps}
+    >
       {error && <div className={styles.error}>{error}</div>}
       {isDragActive ? "DROP IT!" : "Drag and Drop or select the file"}
     </Dropzone>

@@ -6,6 +6,7 @@ import ListItem from "components/ListItem";
 import Link from "components/Link";
 import List from "components/List";
 import classes from "utils/classes";
+
 function PackageInfo({ className }) {
   const { packages, selected, hasPackageData } = useStoreState();
   const { makeDependentsByName } = useStoreActions();
@@ -21,7 +22,7 @@ function PackageInfo({ className }) {
   const data = useMemo(() => packages[selected], [packages, selected]);
 
   return data ? (
-    <div className={classes(styles.root, className)}>
+    <div data-testid="PackageInfo" className={classes(styles.root, className)}>
       <h3>Name</h3>
       <pre>{data.name}</pre>
       <h3>Description</h3>
@@ -35,7 +36,11 @@ function PackageInfo({ className }) {
                 <span>
                   {d.map((i) =>
                     hasPackageData(i) ? (
-                      <Link key={i} href={`#${i}`}>
+                      <Link
+                        data-testid={`PackageInfoDependsItem_${i}`}
+                        key={i}
+                        href={`#${i}`}
+                      >
                         {i}
                       </Link>
                     ) : (
@@ -54,7 +59,10 @@ function PackageInfo({ className }) {
           ) : (
             <List>
               {data?.dependents?.map((i) => (
-                <ListItem key={i}>
+                <ListItem
+                  data-testid={`PackageInfoDependentsItem_${i}`}
+                  key={i}
+                >
                   <Link href={`#${i}`}>{i}</Link>
                 </ListItem>
               ))}

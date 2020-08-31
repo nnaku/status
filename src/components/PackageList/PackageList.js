@@ -11,7 +11,7 @@ export default function PackageList({ className }) {
   const { packageList } = useStoreState();
 
   return (
-    <List className={classes(styles.root, className)}>
+    <List data-testid="PackageList" className={classes(styles.root, className)}>
       {packageList.map((e, index, array) => (
         <Fragment key={e}>
           {/* when starting letter changes, render sub header*/}

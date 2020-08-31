@@ -27,9 +27,9 @@ function App() {
   }, [setSelected]);
 
   return (
-    <div id="App" className={styles.root}>
+    <div data-testid="App" id="App" className={styles.root}>
       <AppHeader />
-      <main className={styles.main}>
+      <main data-testid="App.main" className={styles.main}>
         {hasPackages ? (
           <Fragment>
             <PackageList />

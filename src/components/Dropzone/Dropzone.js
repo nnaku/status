@@ -1,8 +1,8 @@
 import React from "react";
 
-function Dropzone({ zoneProps, inputProps, children }) {
+function Dropzone({ zoneProps, inputProps, children, ...rest }) {
   return (
-    <div {...zoneProps}>
+    <div data-testid="Dropzone" {...zoneProps} {...rest}>
       <input {...inputProps} />
       {children}
     </div>
