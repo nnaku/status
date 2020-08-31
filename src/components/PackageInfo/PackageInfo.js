@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from "react";
+import React, { useMemo, useEffect, Fragment } from "react";
 import { useStoreState, useStoreActions } from "../../store";
 
 import styles from "./PackageInfo.module.scss";
@@ -19,59 +19,70 @@ function PackageInfo({ className }) {
     }
   }, [selected, packages, makeDependentsByName]);
 
-  const data = useMemo(() => packages[selected], [packages, selected]);
+  const data = useMemo(() => packages?.[selected], [packages, selected]);
 
-  return data ? (
-    <div data-testid="PackageInfo" className={classes(styles.root, className)}>
-      <h3>Name</h3>
-      <pre>{data.name}</pre>
-      <h3>Description</h3>
-      <p>{data.description}</p>
-      <div>
-        <div>
-          <h3>depends</h3>
-          <List>
-            {data.depends.map((d, idx) => (
-              <ListItem key={`data.name.depends[${idx}]`}>
-                <span>
-                  {d.map((i) =>
-                    hasPackageData(i) ? (
-                      <Link
-                        data-testid={`PackageInfoDependsItem_${i}`}
-                        key={i}
-                        href={`#${i}`}
-                      >
-                        {i}
-                      </Link>
-                    ) : (
-                      i
-                    )
-                  )}
-                </span>
-              </ListItem>
-            ))}
-          </List>
-        </div>
-        <div>
-          <h3>dependents</h3>
-          {data?.dependents === null ? (
-            "Loading..."
-          ) : (
-            <List>
-              {data?.dependents?.map((i) => (
-                <ListItem
-                  data-testid={`PackageInfoDependentsItem_${i}`}
-                  key={i}
-                >
-                  <Link href={`#${i}`}>{i}</Link>
-                </ListItem>
-              ))}
-            </List>
-          )}
-        </div>
-      </div>
+  return (
+    <div
+      data-testid="PackageInfo"
+      className={classes(styles.root, { [styles.center]: !data }, className)}
+    >
+      {data ? (
+        <Fragment>
+          <h3>Name: {data.name}</h3>
+          <h3>Description</h3>
+          <p>{data.description}</p>
+          <div className={styles.cols}>
+            <div className={styles.col}>
+              <h3>Depends</h3>
+              <List>
+                {data.depends.map((d, idx) => (
+                  <ListItem key={`data.name.depends[${idx}]`}>
+                    <span>
+                      {d.map((i) =>
+                        hasPackageData(i) ? (
+                          <Link
+                            data-testid={`PackageInfoDependsItem_${i}`}
+                            key={i}
+                            href={`#${i}`}
+                          >
+                            {i}
+                          </Link>
+                        ) : (
+                          i
+                        )
+                      )}
+                    </span>
+                  </ListItem>
+                ))}
+              </List>
+            </div>
+            <div className={styles.col}>
+              <span>
+                <h3>Dependents (Reverse dependencies)</h3>
+              </span>
+
+              {data?.dependents === null ? (
+                "Loading..."
+              ) : (
+                <List>
+                  {data?.dependents?.map((i) => (
+                    <ListItem
+                      data-testid={`PackageInfoDependentsItem_${i}`}
+                      key={i}
+                    >
+                      <Link href={`#${i}`}>{i}</Link>
+                    </ListItem>
+                  ))}
+                </List>
+              )}
+            </div>
+          </div>{" "}
+        </Fragment>
+      ) : (
+        <div>Select package</div>
+      )}
     </div>
-  ) : null;
+  );
 }
 
 export default PackageInfo;
