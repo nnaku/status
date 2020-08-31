@@ -1,46 +1,44 @@
-import React, { useState, useCallback, useEffect } from "react";
-import statusFileParser from "utils/statusFileParser";
+import React, { useEffect, Fragment } from "react";
 
-import { useStoreActions, useStoreState } from "./store";
-import Link from "components/Link";
-import List from "components/List";
-import ListItem from "components/ListItem";
+import { useStoreState, useStoreActions } from "./store";
+
+import DragDropFileInput from "components/DragDropFileInput";
+import PackageList from "components/PackageList";
+import PackageInfo from "components/PackageInfo";
+import AppHeader from "components/AppHeader";
+
+import styles from "./App.module.scss";
 
 function App() {
-  const [files, setFiles] = useState();
-
-  const state = useStoreState();
-  const { setPackages } = useStoreActions();
+  const { hasPackages } = useStoreState();
+  const { setSelected } = useStoreActions();
 
   useEffect(() => {
-    async function parse() {
-      const data = await statusFileParser(files?.[0]);
-      setPackages(data);
+    if (!hasPackages) {
+      window.location.hash = "#";
     }
+  }, [hasPackages]);
 
-    if (files) {
-      parse();
-    }
-  }, [files, setPackages]);
+  useEffect(() => {
+    window.onhashchange = () =>
+      setSelected(window.location.hash.replace("#", ""));
 
-  const handleChange = useCallback(
-    (e) => {
-      setFiles(e.target.files);
-      console.log(e.target.files?.[0]);
-    },
-    [setFiles]
-  );
+    return () => (window.onhashchange = null);
+  }, [setSelected]);
 
   return (
-    <div className="App">
-      <input type="file" onChange={handleChange} files={files} />
-      <List>
-        {state.packageList.map((e) => (
-          <ListItem key={e} id={e}>
-            <Link href={`#${e}`}>{e}</Link>
-          </ListItem>
-        ))}
-      </List>
+    <div id="App" className={styles.root}>
+      <AppHeader />
+      <main className={styles.main}>
+        {hasPackages ? (
+          <Fragment>
+            <PackageList />
+            <PackageInfo />
+          </Fragment>
+        ) : (
+          <DragDropFileInput />
+        )}
+      </main>
     </div>
   );
 }
