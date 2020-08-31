@@ -1,8 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# status explorer
 
-## Application as live
+# Application as live
 
-Live version of status is [http://nnaku.github.io/status/#](Here) and it's hosted over Github pages!
+Live version of status app lives [Here](http://nnaku.github.io/status/#)! (Hosted over Github pages)
 
 ## Available Scripts
 
@@ -30,3 +30,5 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
