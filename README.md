@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Application as live
+
+Live version of status is [http://nnaku.github.io/status/#](Here) and it's hosted over Github pages!
+
 ## Available Scripts
 
 In the project directory, you can run:
