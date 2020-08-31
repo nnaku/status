@@ -1,0 +1,11 @@
+.root {
+  height: 48px;
+  background-color: white;
+  padding: 8px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  .spacer {
+    flex: 1;
+  }
+}
