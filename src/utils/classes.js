@@ -8,13 +8,14 @@ export default function classes() {
 
         case "object": {
           if (arg === null) {
-            return arg.trim();
+            return arg;
           } else if (Array.isArray(arg)) {
             return classes(...arg);
           } else {
             return Object.entries(arg)
               .reduce(
-                (acc, [key, value]) => (value ? `${acc} ${key}` : acc),
+                (acc, [key, value]) =>
+                  value && typeof value !== "function" ? `${acc} ${key}` : acc,
                 ""
               )
               .trim();
