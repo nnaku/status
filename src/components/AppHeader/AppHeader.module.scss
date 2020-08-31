@@ -3,9 +3,18 @@
   background-color: white;
   padding: 8px;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
+
   .spacer {
     flex: 1;
+  }
+  .title {
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+  }
+  .status {
+    font-weight: bold;
   }
 }
