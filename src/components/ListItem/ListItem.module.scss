@@ -1,11 +1,9 @@
 .root {
   font-size: 1.5rem;
-
   border-bottom: 1px solid gainsboro;
-  transition: font-size 100ms ease-out;
   scroll-margin-top: 2rem;
   display: flex;
-  color: #303030;
+  color: #525252;
   background-color: white;
 
   & > * {
@@ -14,9 +12,9 @@
 
   &.subHeader {
     color: white;
-    background-color: #303030;
+    background-color: #525252;
     position: sticky;
-    top: 0;
+    top: -4px;
     scroll-margin-top: 0;
   }
   &:target:not(.subHeader) {
@@ -26,7 +24,6 @@
     border-bottom: none;
   }
   &:hover:not(.subHeader) {
-    font-size: 2rem;
     background-color: whitesmoke;
   }
 }
