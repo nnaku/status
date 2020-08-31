@@ -1,6 +1,6 @@
 import React, { useEffect, Fragment } from "react";
 
-import { useStoreState, useStoreActions } from "./store";
+import { useStoreState, useStoreActions } from "../store";
 
 import DragDropFileInput from "components/DragDropFileInput";
 import PackageList from "components/PackageList";
